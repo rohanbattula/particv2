@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Party(models.Model):
+    when = models.DateTimeField("date created", auto_now_add=True)
+    '''
     # put characteristics of party here
     name = models.CharField(max_length = 100, unique=True)
     address = models.CharField(max_length = 1000)
@@ -14,3 +16,4 @@ class Party(models.Model):
 
     def __str__(self):
         return self.name
+'''

@@ -1,3 +1,4 @@
+import os
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -6,6 +7,7 @@ from hello.models import Party
 #from hello.serializer import PartySerializer
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
 
 def index(request):
     return HttpResponse("Hello, world. You're at the party index.")
@@ -26,7 +28,7 @@ def get_rest_list(request):
         serializer = PartySerializer(rest_list, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-
+'''
 def db(request):
 
     party = Party()
@@ -35,4 +37,3 @@ def db(request):
     parties = Party.objects.all()
 
     return render(request, "db.html", {"parties": parties})
-'''
