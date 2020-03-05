@@ -4,20 +4,18 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
 from hello.models import Party
-#from hello.serializer import PartySerializer
+from hello.serializer import PartySerializer
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the party index.")
+    rest_list = Party.objects.order_by('-id')
+    serializer = PartySerializer(rest_list, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
 '''
-def index(request):
-    rest_list = Party.objects.order_by('-dateTime')
-    context = {'rest_list': rest_list}
-    return render(request, 'index.html', context)
-
-
 # Rest api end point
 def get_rest_list(request):
     """
@@ -27,8 +25,8 @@ def get_rest_list(request):
         rest_list = Party.objects.order_by('-dateTime')
         serializer = PartySerializer(rest_list, many=True)
         return JsonResponse(serializer.data, safe=False)
-
 '''
+
 def db(request):
 
     party = Party()
