@@ -8,11 +8,11 @@ from hello.serializer import PartySerializer
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-
 def index(request):
-    rest_list = Party.objects.order_by('-id')
+    rest_list = Party.objects.order_by('-dateTime')
     serializer = PartySerializer(rest_list, many=True)
     return JsonResponse(serializer.data, safe=False)
+
 
 
 '''
