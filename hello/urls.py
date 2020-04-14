@@ -11,5 +11,5 @@ urlpatterns = [
     path('new/',views.db,name='party_new')
     #path('edit/',views.db,name='party_new')
 
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
 ]

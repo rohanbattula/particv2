@@ -13,7 +13,7 @@ def index(request):
     serializer = PartySerializer(party_list, many=True)
     return JsonResponse(serializer.data, safe=False)
 
-
+'''
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -25,10 +25,11 @@ def register(request):
     else:
         form = UserCreationForm()
 return render(request, 'accounts/signup.html'.{'form'.form})
-
+'''
 
 def party_new(request):
     form = PartyForm()
+    return render(request, 'party/party_edit.html', {'form': form})
 
     if request.method == "POST":
         form = PartyForm(request.POST)
@@ -40,7 +41,7 @@ def party_new(request):
     else:
         form = PartyForm()
 
-
+'''
 def party_edit(request, pk):
     party = get_object_or_404(Party, pk=pk)
     if request.method == "POST":
@@ -73,3 +74,4 @@ def login(request):
         else:
             messages.self.fail('Login unsuccessful')
         return render(request, 'Party.home', {'party': party})
+'''
