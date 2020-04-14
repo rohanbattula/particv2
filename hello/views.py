@@ -30,7 +30,6 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 
 def party_new(request):
     form = PartyForm()
-    return render(request, 'party/party_edit.html', {'form': form})
 
     if request.method == "POST":
         form = PartyForm(request.POST)
@@ -38,9 +37,11 @@ def party_new(request):
             party = form.save(commit=False)
             party.createdBy = request.user
             party.save()
-            return redirect('party_detail', pk=post.pk)
+            return JsonResponse(request)
     else:
         form = PartyForm()
+        return JsonResponse(request)
+
 
 '''
 def party_edit(request, pk):
