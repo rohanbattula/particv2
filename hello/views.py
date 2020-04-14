@@ -37,10 +37,10 @@ def party_new(request):
             party = form.save(commit=False)
             party.createdBy = request.user
             party.save()
-            return JsonResponse(request, safe=False)
+            #return JsonResponse(request, safe=False)
     else:
         form = PartyForm()
-        return JsonResponse(request, safe =False)
+        #return JsonResponse(request, safe =False)
 
 
 '''
