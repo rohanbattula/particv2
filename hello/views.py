@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from hello.forms import PartyForm
 from hello.models import Party
 from hello.serializer import PartySerializer
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt 
 # Create your views here.
 
 def index(request):
@@ -28,6 +28,7 @@ def register(request):
 return render(request, 'accounts/signup.html'.{'form'.form})
 '''
 
+@csrf_exempt
 def party_new(request):
     form = PartyForm()
 
@@ -37,10 +38,10 @@ def party_new(request):
             party = form.save(commit=False)
             party.createdBy = request.user
             party.save()
-            #return JsonResponse(request, safe=False)
+            return HttpResponse("success")
     else:
         form = PartyForm()
-        #return JsonResponse(request, safe =False)
+        return HttpResponse("success")
 
 
 '''
