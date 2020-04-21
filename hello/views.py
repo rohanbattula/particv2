@@ -38,7 +38,7 @@ def party_new(request):
             return HttpResponse("success")
     else:
         form = PartyForm()
-        return HttpResponse("success")
+        return HttpResponse("failure")
 
 
 '''
