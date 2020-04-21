@@ -6,8 +6,7 @@ from django.http import HttpResponse
 from hello.forms import PartyForm
 from hello.models import Party
 from hello.serializer import PartySerializer
-from django.views.decorators.csrf import csrf_exempt 
-# Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def index(request):
