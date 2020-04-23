@@ -38,7 +38,7 @@ def party_new(request):
             party.createdBy = request.user
             party.save()
             return HttpResponse("success")
-        else
+        else:
             return HttpResponse("perhaps")
     return HttpResponse("failure")
 
