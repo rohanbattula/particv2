@@ -1,5 +1,5 @@
 import os
-
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
@@ -7,6 +7,7 @@ from hello.forms import PartyForm
 from hello.models import Party
 from hello.serializer import PartySerializer
 
+@csrf_exempt
 def index(request):
     party_list = Party.objects.order_by('-dateTime')
     serializer = PartySerializer(party_list, many=True)
@@ -26,6 +27,7 @@ def register(request):
 return render(request, 'accounts/signup.html'.{'form'.form})
 '''
 
+@csrf_exempt
 def party_new(request):
     form = PartyForm()
 
