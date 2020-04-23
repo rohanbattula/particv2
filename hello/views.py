@@ -29,17 +29,17 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 
 @csrf_exempt
 def party_new(request):
+
     form = PartyForm()
-
     if request.method == "POST":
-        return HttpResponse("perhaps")
-
         form = PartyForm(request.POST)
         if form.is_valid():
             party = form.save(commit=False)
             party.createdBy = request.user
             party.save()
             return HttpResponse("success")
+        else
+            return HttpResponse("perhaps")
     return HttpResponse("failure")
 
 
