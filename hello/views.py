@@ -32,6 +32,8 @@ def party_new(request):
     form = PartyForm()
 
     if request.method == "POST":
+        return HttpResponse("perhaps")
+
         form = PartyForm(request.POST)
         if form.is_valid():
             party = form.save(commit=False)
