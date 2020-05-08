@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from hello.forms import PartyForm
 from hello.models import Party
 from hello.serializer import PartySerializer
-from rest_framework.parsers import JSONParser
 
 
 @csrf_exempt
@@ -32,12 +31,11 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 @csrf_exempt
 def party_new(request):
     if request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = PartySerializer(data=data)
+        serializer = PartySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 '''
