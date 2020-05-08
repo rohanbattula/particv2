@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from hello.forms import PartyForm
 from hello.models import Party
 from hello.serializer import PartySerializer
+from rest_framework.parsers import JSONParser
+
 
 @csrf_exempt
 def index(request):
