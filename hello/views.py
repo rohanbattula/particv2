@@ -30,7 +30,6 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 '''
 
 @csrf_exempt
-@api_view(['GET', 'POST'])
 def party_new(request):
     """
     List all code snippets, or create a new snippet.
