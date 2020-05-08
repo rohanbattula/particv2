@@ -6,5 +6,5 @@ class PartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Party
         #fields = ('name', 'address')
-        fields = ('name', 'address','status','distance',
-        'entryFee','dateTime','guysAllowed')
+        fields = ['name', 'address','status','distance',
+        'entryFee','dateTime','guysAllowed']
