@@ -30,17 +30,13 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 @csrf_exempt
 def party_new(request):
 
-    form = PartyForm()
-    if request.method == "POST":
-        form = PartyForm(request.POST)
-        if form.is_valid():
-            party = form.save(commit=False)
-            party.createdBy = request.user
-            party.save()
-            return HttpResponse("success")
-        else:
-            return HttpResponse("perhaps")
-    return HttpResponse("failure")
+    if request.method="POST":
+        data = JSONParser().parse(request)
+        serializer = PartySerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
 
 
 '''
