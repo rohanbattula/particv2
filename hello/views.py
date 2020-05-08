@@ -36,7 +36,7 @@ def party_new(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        snippets = Snippet.objects.all()
+        snippets = Party.objects.all()
         serializer = PartySerializer(snippets, many=True)
         return Response(serializer.data)
 
