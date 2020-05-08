@@ -30,8 +30,17 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 '''
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
 def party_new(request):
-    if request.method == "POST":
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        snippets = Snippet.objects.all()
+        serializer = PartySerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
         serializer = PartySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
