@@ -29,8 +29,7 @@ return render(request, 'accounts/signup.html'.{'form'.form})
 
 @csrf_exempt
 def party_new(request):
-
-    if request.method="POST":
+    if request.method == "POST":
         data = JSONParser().parse(request)
         serializer = PartySerializer(data=data)
         if serializer.is_valid():
